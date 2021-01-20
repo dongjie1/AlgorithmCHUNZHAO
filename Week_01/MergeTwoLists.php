@@ -23,6 +23,8 @@ class Solution
      * @param ListNode $l1
      * @param ListNode $l2
      * @return ListNode
+     * 时间复杂度: O(n+m)
+     * 空间复杂度: O(1)
      */
     function mergeTwoLists($l1, $l2)
     {
@@ -44,7 +46,14 @@ class Solution
         return $l->next;
     }
 
-    //递归
+    /**
+     * @param $l1
+     * @param $l2
+     * @return mixed
+     * 递归
+     * 时间复杂度: O(n+m)
+     * 空间复杂度: O(n+m)
+     */
     function mergeTwoLists2($l1,$l2){
         if($l1 == null){
             return $l2;
