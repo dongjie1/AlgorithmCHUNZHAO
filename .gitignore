@@ -1,0 +1,5 @@
+\.idea/
+.ftpconfig
+.vscode
+.DS_Store
+.phpunit.result.cache
