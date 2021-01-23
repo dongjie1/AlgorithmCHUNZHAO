@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * https://leetcode-cn.com/problems/design-circular-deque/
+ * 641: 实现双端循环队列
  * 数组实现双端循环队列
  */
 class MyCircularDequeArray {
