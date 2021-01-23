@@ -1,16 +1,17 @@
 <?php
 
 /**
- * 用数组实现双端队列
- * Class MyCircularDeque
+ * 数组实现双端循环队列
  */
-class MyCircularDeque {
+class MyCircularDequeArray {
     /**
      * Initialize your data structure here. Set the size of the deque to be k.
      * @param Integer $k
      */
     private $deque = array();
     private $capacity;
+    private $head = 0;
+    private $tail = 0;
     function __construct($k) {
         $this->capacity = $k;
     }
@@ -21,16 +22,19 @@ class MyCircularDeque {
      * @return Boolean
      */
     function insertFront($value) {
-        if(empty($this->deque)){
+        if($this->isEmpty()){
             $this->deque[0] = $value;
+            $this->tail = 1;
+            $this->head = 0;
             return true;
         }
 
-        if(count($this->deque) == $this->capacity){
+        if($this->isFull()){
             return false;
         }
 
-        array_unshift($this->deque,$value);
+        $this->head = ($this->head - 1 + $this->capacity) % $this->capacity;
+        $this->deque[$this->head] = $value;
         return true;
     }
 
@@ -40,16 +44,20 @@ class MyCircularDeque {
      * @return Boolean
      */
     function insertLast($value) {
-        if(empty($this->deque)){
-            $this->deque[] = $value;
+        if($this->isEmpty()){
+            $this->deque[0] = $value;
+            $this->tail = 1;
+            $this->head = 0;
             return true;
         }
 
-        if(count($this->deque) == $this->capacity){
+        if($this->isFull()){
             return false;
         }
 
-        array_push($this->deque,$value);
+        $this->deque[$this->tail] = $value;
+        $this->tail = ($this->tail + 1) % $this->capacity;
+
         return true;
     }
 
@@ -58,8 +66,9 @@ class MyCircularDeque {
      * @return Boolean
      */
     function deleteFront() {
-        if(empty($this->deque)) return false;
-        array_shift($this->deque);
+        if($this->isEmpty()) return false;
+        unset($this->deque[$this->head]);
+        $this->head = ($this->head + 1) % $this->capacity;
         return true;
     }
 
@@ -68,8 +77,10 @@ class MyCircularDeque {
      * @return Boolean
      */
     function deleteLast() {
-        if(empty($this->deque)) return false;
-        array_pop($this->deque);
+        if($this->isEmpty()) return false;
+        $index = ($this->tail - 1 + $this->capacity) % $this->capacity;
+        unset($this->deque[$index]);
+        $this->tail = ($index + $this->capacity) % $this->capacity;
         return true;
     }
 
@@ -78,8 +89,8 @@ class MyCircularDeque {
      * @return Integer
      */
     function getFront() {
-        if(empty($this->deque)) return -1;
-        return array_shift($this->deque);
+        if($this->isEmpty()) return -1;
+        return $this->deque[$this->head];
     }
 
     /**
@@ -87,8 +98,9 @@ class MyCircularDeque {
      * @return Integer
      */
     function getRear() {
-        if(empty($this->deque)) return -1;
-        return array_pop($this->deque);
+        if($this->isEmpty()) return -1;
+        $index = ($this->tail - 1 + $this->capacity) % $this->capacity;
+        return $this->deque[$index];
     }
 
     /**
@@ -104,19 +116,29 @@ class MyCircularDeque {
      * @return Boolean
      */
     function isFull() {
-        return count($this->deque) == $this->capacity;
+        return ($this->head == $this->tail) && (count($this->deque) == $this->capacity);
+    }
+
+    function printDeque(){
+        echo implode(' -> ',$this->deque);
     }
 }
 
-/**
- * Your MyCircularDeque object will be instantiated and called as such:
- * $obj = MyCircularDeque($k);
- * $ret_1 = $obj->insertFront($value);
- * $ret_2 = $obj->insertLast($value);
- * $ret_3 = $obj->deleteFront();
- * $ret_4 = $obj->deleteLast();
- * $ret_5 = $obj->getFront();
- * $ret_6 = $obj->getRear();
- * $ret_7 = $obj->isEmpty();
- * $ret_8 = $obj->isFull();
- */
+$res = [];
+$obj = new MyCircularDequeArray(2);
+$res[] = $obj->insertFront(7);
+$res[] = $obj->deleteLast();
+$res[] = $obj->getFront();
+$res[] = $obj->insertLast(5);
+$res[] = $obj->insertFront(0);
+$res[] = $obj->getFront();
+$res[] = $obj->getRear();
+$res[] = $obj->getFront();
+$res[] = $obj->getFront();
+$res[] = $obj->getRear();
+$res[] = $obj->insertLast(0);
+
+$obj->printDeque();
+
+echo "\n";
+echo '['.implode(',',$res).']';
