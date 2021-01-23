@@ -1,5 +1,7 @@
 <?php
 /**
+ * https://leetcode-cn.com/problems/design-circular-deque/
+ * 641: 实现双端循环队列
  * 双向链表实现循环队列
  */
 
