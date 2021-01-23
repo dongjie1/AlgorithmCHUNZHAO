@@ -29,7 +29,7 @@ class Solution {
 
     /**
      * @param $height
-     * @return int|mixed
+     * @return int
      * 双指针实现
      * 时间复杂度: O(n)
      * 空间复杂度: O(1)
