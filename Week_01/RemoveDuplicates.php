@@ -66,16 +66,6 @@ class Solution {
         if ($len == 1) {
             return $res;
         }
-//        $last = $nums[0];
-//
-//        for($i=1; $i<$len; $i++){
-//            if($nums[$i] == $last){
-//                unset($nums[$i]);
-//                continue;
-//            }
-//            $last = $nums[$i];
-//            $res++;
-//        }
 
         $last = null;
         foreach ($nums as $i => $num) {
@@ -88,6 +78,25 @@ class Solution {
         }
 
         return $res;
+    }
+
+    /**
+     * 用前后两指针
+     * @param $nums
+     * @return int
+     */
+    function removeDuplicates2(&$nums){
+        if(empty($nums)) return 0;
+        $p = 0;
+        $q = 1;
+        while ($q < count($nums)){
+            if($nums[$q] !== $nums[$p]){
+                $p++;
+                $nums[$p] = $nums[$q];
+            }
+            $q++;
+        }
+        return $p;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
