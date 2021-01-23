@@ -96,7 +96,7 @@ class Solution {
             }
             $q++;
         }
-        return $p;
+        return $p+1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
