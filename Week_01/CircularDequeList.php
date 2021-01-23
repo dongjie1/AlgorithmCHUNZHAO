@@ -158,4 +158,5 @@ $res[] = $obj->getFront();
 $res[] = $obj->isEmpty();
 $obj->printDeque();
 
-var_dump($res);
+echo "\n";
+echo '['.implode(',',$res).']';
