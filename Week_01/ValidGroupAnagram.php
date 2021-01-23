@@ -27,7 +27,6 @@ class Solution {
      * @param $strs
      * @return array
      * 字符计数方法
-     * 这种方法key太长
      */
     function groupAnagrams1($strs){
         $res = [];
@@ -40,7 +39,7 @@ class Solution {
             for($i=ord('a'); $i<=ord('z'); $i++){
                 $key .= '#'.$tmp[$i]?:0;
             }
-            var_dump($key);
+            $key = md5($key);
             $res[$key][] = $str;
         }
         return $res;
