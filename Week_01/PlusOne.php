@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * https://leetcode-cn.com/problems/plus-one/
+ * 66. 加一
+ */
 class Solution {
 
     /**
