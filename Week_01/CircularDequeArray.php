@@ -104,8 +104,6 @@ class MyCircularDeque {
      * @return Boolean
      */
     function isFull() {
-        print_r($this->deque);
-        print_r($this->capacity);
         return count($this->deque) == $this->capacity;
     }
 }
