@@ -73,4 +73,33 @@
         - 2.从堆顶依次向下调整元素，与两个子节点比较，与两个子点中最大的交换位置，直到堆尾
         - 3.长度-1
         - 4.时间复杂度: O(logN)，与树的深度正比
+    
+### 5. 递归：
+- 代码模板:
+```phpregexp
+function recursion(level,param1,param2,...){
+    //recursion terminator: 递归终结条件
+    if(level >= MAX_LEVEL){
+        process_result
+        return
+    }
+    
+    //process logic in current level: 处理当前逻辑
+    process(level,data,...)
+    
+    //drill down: 下探到下一层
+    self.recursion(level+1,param1,param2,...)
+    
+    //reverse the current level status if needed: 清理当前层
+}
+```
+- 思维要点:
+    - 不要人肉递归
+    - 找到最近重复子问题
+    - 数学归纳法
+    
+- 递归优化:
+    - 直接递归
+    - 使用缓存保存已经访问到的数据，减少递归次数
+    - 动态规化
   
