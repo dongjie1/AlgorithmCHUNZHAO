@@ -1,7 +1,8 @@
 <?php
 class Solution {
     /**
-     * @param Node $root
+     * 递归
+     * @param NTreeNode $root
      * @return integer[]
      */
     private $data = [];
@@ -16,6 +17,11 @@ class Solution {
         return $this->data;
     }
 
+    /**
+     * 迭代
+     * @param NTreeNode $root
+     * @return array
+     */
     function preorder($root){
         if (!$root) return [];
 
