@@ -6,7 +6,7 @@
 class Solution {
     /**
      * 递归
-     * @param Node $root
+     * @param NTreeNode $root
      * @return integer[]
      */
     private $data = [];
@@ -22,7 +22,7 @@ class Solution {
 
     /**
      * 迭代
-     * @param $root
+     * @param NTreeNode $root
      * @return array
      *
      */
