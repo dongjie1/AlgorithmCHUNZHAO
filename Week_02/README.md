@@ -1,4 +1,5 @@
 ### 1.二叉树的遍历:
+#### 1.1 递归遍历代码模板
 - 前序遍历
   ```php
     public function preOrder(TreeNode $root){
@@ -28,6 +29,68 @@
             $this->traverse_path[] = $root->val;
         }
     }
+    ```
+  
+#### 1.2 迭代遍历代码模板
+- 前序遍历
+  ```php 
+  function preorder($root){
+        if (!$root) return [];
+
+        $result = [];
+        $stack = [$root];
+        while ($stack){
+            $node = array_pop($stack);
+            $result[] = $node->val;
+
+            $node->right && $stack[] = $node->right;//先放右再放左
+            $node->left && $stack[] = $node->left;
+        }
+
+        return $result;
+    }
+  ```
+- 中序遍历
+  ```php
+    public function inorder($root){
+        if(!$root) return [];
+
+        $path = [];
+        $stack = [];
+        $cur = $root; //访问节点的指针
+
+        while ($cur || !empty($stack)){
+            if($cur){//一直向左直到最底层
+                $stack[] = $cur;//将访问的节点放进栈
+                $cur = $cur->left;//左
+            }else{
+                $cur = array_pop($stack);// 从栈里弹出的数据，就是要处理的数据（放进path数组里的数据）
+                $path[] = $cur->val;//中
+                $cur = $cur->right; //右
+            }
+        }
+        return $path;
+    }
+  ```
+- 后序遍历
+    ```php 
+    public function postorder($root){
+        if (!$root) return [];
+
+        $result = [];
+        $stack = [$root];
+        while ($stack) {
+            $node = array_pop($stack);
+            $result[] = $node->val;
+
+            $node->left && $stack[] = $node->left;
+            $node->right && $stack[] = $node->right;
+        }
+
+        $result = array_reverse($result);
+        return $result;
+    }
+
     ```
   
 ### 2. 二叉搜索树:
