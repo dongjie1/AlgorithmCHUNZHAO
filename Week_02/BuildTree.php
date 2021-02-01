@@ -1,6 +1,7 @@
 <?php
 /**
  * 从前序遍历与中序遍历构造二叉树
+ * https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
  */
 
 class Solution {
