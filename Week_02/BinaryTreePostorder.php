@@ -1,6 +1,7 @@
 <?php
 /**
  * 二叉树后序遍历
+ * https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
  */
 
 class Solution{
@@ -20,7 +21,7 @@ class Solution{
     }
 
     /**
-     * 迭代: 先遍历为根右左的顺序，再返回即为后序遍历的左右根
+     * 迭代: 先遍历为根右左的顺序，再反转即为后序遍历的左右根
      * @param TreeNode $root
      */
     function postorder2($root){
