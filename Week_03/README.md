@@ -165,7 +165,7 @@ function binarySearch($nums,$target){
     $right = count($nums)-1;
     
     while($left <= $right) {
-        $mid = $left + ($right - $left) / 2;//为了防止数组越界
+        $mid = $left + intval(($right - $left) / 2);//为了防止数组越界
         if($mid == $target){
             return $mid;
         }elseif($nums[$mid] < $target){
