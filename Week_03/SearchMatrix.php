@@ -21,12 +21,12 @@ class Solution {
         //二分查找出target在哪行
         $l = 0;
         $r = $m-1;
-        $row = -1;
+        $row = -1;  //target所在行索引
         while($l <= $r){
             $mid = intval(($l + $r)/2);
             if($matrix[$mid][0] == $target){
                 return true;
-            }elseif($matrix[$mid][0] <= $target && $matrix[$mid][$n-1] >= $target){
+            }elseif($matrix[$mid][0] < $target && $matrix[$mid][$n-1] >= $target){//如果当前行首小于target且行尾大于等于target则target在此行
                 $row = $mid;
                 break;
             }elseif($matrix[$mid][0] > $target){
