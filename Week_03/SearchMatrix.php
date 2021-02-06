@@ -5,13 +5,44 @@
  */
 
 class Solution {
+    /**
+     * 把二维升序数组当成一个一维升序数组
+     * 如果index为一维数组的索引
+     * 那么二维数组中的行索引 row = index / n;
+     * 那么二维数组中的列索引 col = index % n
+     * @param $matrix
+     * @param $target
+     */
+    function searchMatrix($matrix, $target){
+        $m = count($matrix);
+        $n = count($matrix[0]);
+
+        $left = 0;
+        $right = $m * $n - 1;
+
+        while ($left <= $right) {
+            $mid = intval(($left + $right) / 2);
+            $row = intval($mid / $n);
+            $col = intval($mid % $n);
+            if ($matrix[$row][$col] == $target){
+                return true;
+            }elseif($matrix[$row][$col] >= $target){
+                $right = $mid - 1;
+            }else{
+                $left = $mid + 1;
+            }
+        }
+        return false;
+    }
 
     /**
+     * 先确定行
+     * 再在行中二分查找
      * @param Integer[][] $matrix
      * @param Integer $target
      * @return Boolean
      */
-    function searchMatrix($matrix, $target) {
+    function searchMatrix2($matrix, $target) {
         $m = count($matrix);
         $n = count($matrix[0]);
         if($m == 1){
