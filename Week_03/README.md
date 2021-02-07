@@ -179,8 +179,9 @@ function binarySearch($nums,$target){
 ```
 #### 6.2:  使用二分查找，寻找一个半有序数组 [4, 5, 6, 7, 0, 1, 2] 中间无序的地方
 ##### 6.2.1 思路:
-- 根据二分查找 mid=(left+right)/2，比较 mid,mid-1,mid+1是否符合升序
-- 如果 mid<mid-1 and mid<mid+1 返回mid
+- 根据二分查找 mid=(left+right)/2，比较 mid,mid-1,mid+1的值
+- 如果 mid<mid-1 则mid位置就是无序开始的地方,返回mid
+- 如果 mid>mid+1 则mid+1位置就是无序开始的地方,返回mid+1
 - 如果 mid>right 则无序的地方在右侧 left=mid+1, 否则在左侧 right=mid-1
 
 ```php
@@ -190,14 +191,16 @@ function search($nums){
 
     while ($left <= $right) {
         $mid = $left + intval(($right-$left)/2);
-        if ($nums[$mid] < $nums[$mid-1] && $nums[$mid]<$nums[$mid+1]){
-            return [$mid-1,$mid];
+        if($nums[$mid] > $nums[$mid+1]){
+            return $mid+1;
+        }elseif ($nums[$mid] < $nums[$mid-1]){
+            return $mid;
         }elseif($nums[$mid] > $nums[$right]){
             $left = $mid + 1;
         }else{
             $right = $mid - 1;
         }
     }
-    return [-1,-1];
+    return -1;
 }
 ```
