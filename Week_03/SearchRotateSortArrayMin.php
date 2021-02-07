@@ -21,19 +21,19 @@ class Solution {
 
         $left = 0;
         $right = $len - 1;
-        if($nums[$left] < $nums[$right]){
+        if($nums[$left] < $nums[$right]){//没有旋转直接返回
             return $nums[0];
         }
 
         while ($left <= $right) {
             $mid = intval(($left+$right)/2);
-            if($nums[$mid] > $nums[$mid+1]) {
+            if($nums[$mid] > $nums[$mid+1]) {   //如果mid比mid+1位置的值大则mid+1的位置就是最小的
                 return $nums[$mid+1];
-            }elseif ($nums[$mid] < $nums[$mid-1]){
+            }elseif ($nums[$mid] < $nums[$mid-1]){//如果mid比mid-1小则mid位置的值就是最小的
                 return $nums[$mid];
-            }elseif($nums[$mid] > $nums[$right]){
+            }elseif($nums[$mid] > $nums[$right]){//如果mid比right位置大说明旋转点在右侧
                 $left = $mid + 1;
-            }else{
+            }else{//如果mid比right位置值小则说明旋转点在左侧
                 $right = $mid - 1;
             }
         }
