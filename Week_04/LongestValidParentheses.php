@@ -58,6 +58,8 @@ class Solution {
     /**
      * @param $s
      * 统计左右括号出现次数，顺序和逆序都遍历一次
+     * 时间复杂度： O(n)
+     * 空间复杂度： O(1)
      */
     function longestValidParentheses3($s){
         $len = strlen($s);
