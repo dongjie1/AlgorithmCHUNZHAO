@@ -92,7 +92,7 @@ class Solution {
         $cnt = 0;
 
         for ($i=0; $i<$len; $i++) {
-            if (!$visited[$i]) {
+            if (!$visited[$i]) {//若当前顶点 i 未被访问，说明又是一个新的连通域，则dfs新的连通域且cnt+=1.
                 $cnt++;
                 $this->dfs($i,$isConnected,$visited);
             }
@@ -100,7 +100,8 @@ class Solution {
         return $cnt;
     }
     function dfs($i,$isConnected,&$visited) {
-        $visited[$i] = true;
+        $visited[$i] = true;//记录当前顶点访问
+        //继续遍历与$i相邻的顶点，visited防止重复访问
         for ($j = 0; $j<count($isConnected); $j++) {
             if ($isConnected[$i][$j] == 1 && !$visited[$j]) {
                 $visited[$j] = true;
