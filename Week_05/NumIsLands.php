@@ -9,7 +9,10 @@ include_once 'UnionFind2.php';
 class Solution{
     /**
      * @param $grid
-     * 使用并查集
+     * 使用并查集:
+     * 相邻的陆地（只需要向右看和向下看）合并，只要发生过合并，岛屿的数量就减少 1；
+     * 在遍历的过程中，同时记录空地的数量；
+     * 并查集中连通分量的个数 - 空地的个数，就是岛屿数量。
      */
     function numIsLands($grid){
         $rows = count($grid);
