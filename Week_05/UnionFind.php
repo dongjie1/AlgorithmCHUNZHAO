@@ -15,7 +15,7 @@ class UnionFind{
 
     public function find($x) {
         $root = $x;
-        while ($this->parent[$root]) {
+        while ($this->parent[$root] !== null) {
             $root = $this->parent[$root];
         }
 
@@ -41,6 +41,4 @@ class UnionFind{
     public function getNums() {
         return $this->count;
     }
-
-
 }
