@@ -1,6 +1,7 @@
 <?php
 /**
  * 547: 省份数量
+ * https://leetcode-cn.com/problems/number-of-provinces/
  */
 
 //include_once 'UnionFind.php';
