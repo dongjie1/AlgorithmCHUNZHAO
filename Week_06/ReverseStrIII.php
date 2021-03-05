@@ -5,11 +5,21 @@
  */
 
 class Solution {
+    function reverseWords1($s) {
+        if ($s == '') return '';
+        $arr = explode(' ',$s);
+
+        $arr = array_map('self::reverse',$arr);
+
+        $s = implode(' ',$arr);
+        return $s;
+    }
+
     /**
      * @param String $s
      * @return String
      */
-    function reverseWords($s) {
+    function reverseWords2($s) {
         if ($s == '') return '';
 
         $tmp = '';
