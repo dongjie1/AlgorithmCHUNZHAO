@@ -49,11 +49,11 @@ class Solution {
                 }
             }
         }
-        $res .= $this->reverseStr($tmp);
+        $res .= $this->reverseStr($tmp);//反转最后一个单词
         return $res;
     }
 
-    function reverseStr($s){
+    private function reverseStr($s){
         if ($s == '') return '';
         $len = strlen($s);
         $i = 0; $j = $len - 1;
