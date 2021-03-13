@@ -258,6 +258,8 @@ function backtracking($res,$nums,$list,$index){
 ```
     - 7.贪心 Greedy
     - 8.动态规划
+        - 状态的定义
+        - dp方程
     - 9.二分查找 Binary Search 
 ```php
 function binarySearch($nums,$target){
@@ -285,3 +287,18 @@ function binarySearch($nums,$target){
         - 一组bit数组
         - 查询到的所有位置都为0时一定不存在
         - 查询到的所有位置都为1时可能存在
+    - 位运算
+        - 指定位置运算
+            - 将x最右边的n位清零: x & (~0<<n)
+            - 获取x的第n位是0或1: (x>>n) & 1
+            - 获取x的第n位幂值: x & (1<<n)
+            - 仅将第n位置为1: x | (1<<n)
+            - 仅将第n位置为0: x & (~(1<<n))
+        - 常用位运算
+            - 判断奇偶:
+                - 奇: x%2==1 -->  (x & 1) == 1
+                - 偶: x%2==0 -->  (x & 1) == 0
+            - 右移相当于除以2: x=x/2 --> x=(x>>1)
+            - 清零最低位1: x & (x-1)
+            - 得到最低位1: x & -x,  -x=~x+1
+            - x & ~x = 0
