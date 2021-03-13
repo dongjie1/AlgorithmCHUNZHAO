@@ -12,7 +12,6 @@ class Solution{
 
         sort($nums);//先排序
         for ($i=0; $i<$len; $i++) {
-            if ($nums[$i] > 0) break;//因为已经排序了，所以如果nums[i]大于0则和必定大于0，退出循环
             if ($i > 0 && $nums[$i] == $nums[$i-1]) continue; //重复元素会导致结果重复，去掉
 
             //双指针
