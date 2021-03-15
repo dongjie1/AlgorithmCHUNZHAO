@@ -8,6 +8,7 @@ class Solution {
      * @return Integer
      */
     function ladderLength($beginWord, $endWord, $wordList) {
+        ini_set('memory_limit','512M');
         $n = count($wordList);
         if($n == 0 || !in_array($endWord,$wordList)){
             return 0;
