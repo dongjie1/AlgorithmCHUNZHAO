@@ -38,4 +38,29 @@ class Solution {
 
         return $root;
     }
+
+    function buildTree2($preorder,$inorder) {
+        if (empty($preorder) || empty($inorder)) {
+            return null;
+        }
+
+        if (count($preorder) == 1) {
+            return new TreeNode($preorder[0]);
+        }
+
+        $root = new TreeNode($preorder[0]);//前序第一个即为当前子树根节点
+        //从中序数组里找根节点位置
+        $pos = array_search($preorder[0],$inorder);
+        //分隔左右子树
+        $left_pre = array_slice($preorder,1,$pos);//前序左子树
+        $right_pre = array_slice($preorder,$pos+1);//前序右子树
+
+        $left_inorder = array_slice($inorder,0,$pos);//中序左子树
+        $right_inorder = array_slice($inorder,$pos+1);//中序右子树
+
+        $root->left = $this->buildTree2($left_pre,$left_inorder);
+        $root->right = $this->buildTree2($right_pre,$right_inorder);
+
+        return $root;
+    }
 }
