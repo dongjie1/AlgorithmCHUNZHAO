@@ -24,25 +24,25 @@ class Solution {
         $dummy = new ListNode(0);
         $dummy->next = $head;
 
-        $pre = $dummy;
-        $end = $dummy;
+        $pre = $dummy;//待翻转的前驱
+        $end = $dummy;//待翻转的后驱
 
         while ($end->next) {
-            for ($i=0; $i<$k && $end; $i++) {
+            for ($i=0; $i<$k && $end; $i++) {//先遍历k个节点
                 $end = $end->next;
             }
-            if (!$end) break;
+            if (empty($end)) break;
 
-            $start = $pre->next;
-            $next = $end->next;
-            $end->next = null;
+            $start = $pre->next;//保存翻转前的开始的节点
+            $next = $end->next; //保存k+1个节点用来和前面翻转的连接
+            $end->next = null; //断开
+            $pre->next = $this->reverse($start);//翻转k个
 
-            $pre->next = $this->reverse($start);
+            $start->next = $next; //翻转后的和后面的连接上:因为翻转了,所以start在这里就是这次翻转的结尾了
 
-            $start->next = $next;
+            $pre = $start;  //重置,相当于本次翻转后的结尾
+            $end = $pre;    //重置
 
-            $pre = $start;
-            $end = $pre;
         }
         return $dummy->next;
     }
