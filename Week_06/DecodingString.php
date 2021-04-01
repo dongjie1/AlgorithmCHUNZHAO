@@ -40,6 +40,43 @@ function decodingStr($s) {
     return $res;
 }
 
+
+/**
+ * 使用递归
+ * @param $s
+ * @return mixed
+ */
+function decodingString($s){
+    return dfs($s,0)[1];
+}
+
+function dfs($s,$i) {
+    $res = '';
+    $multi = 0;
+
+    while ($i < strlen($s)) {
+        if ($s{$i} >= '0' && $s{$i} <= '9') {
+            $multi = $multi * 10 + $s{$i};
+        }elseif($s{$i} == '[') {
+            $tmp = dfs($s,$i+1);
+            $i = $tmp[0];
+            $st = '';
+            while ($multi > 0) {
+                $st .= $tmp[1];
+                $multi--;
+            }
+            $res .= $st;
+            $multi = 0;
+        }elseif($s{$i} == ']') {
+            return [$i,$res];
+        }else{
+            $res .= $s{$i};
+        }
+        $i++;
+    }
+    return [$i,$res];
+}
+
 $s = '3[a]2[bc]';
-$res = decodingStr($s);
+$res = decodingString($s);
 var_dump($res);
